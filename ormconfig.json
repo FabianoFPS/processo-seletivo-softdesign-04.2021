@@ -1,0 +1,11 @@
+{
+  "name": "default",
+  "type": "mongodb",
+  "host": "localhost",
+  "port": 27017,
+  "database": "softdesign__mongodb",
+  "useUnifiedTopology": true,
+  "entities": [
+    "./src/typeorm/schemas/*.ts"
+  ]
+}
