@@ -37,6 +37,7 @@ export class LoanRepository implements ILoansRepository {
       where: {
         bookId,
         userId,
+        active: true,
       }
     });
 

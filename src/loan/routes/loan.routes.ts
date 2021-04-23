@@ -32,7 +32,7 @@ loanRouter.post(
 );
 
 loanRouter.patch(
-  '/devolution/:bookId',
+  '/:bookId/devolution',
   async (request: Request, response: Response): Promise<Response> => {
     const userId = request.user.id;
     const { bookId } = request.params;

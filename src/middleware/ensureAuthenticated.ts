@@ -14,13 +14,13 @@ export function ensureAuthenticated(
   response: Response,
   next: NextFunction
 ): void | Response {
-  const authHeader = request.headers.authorization;
-
-  if (!authHeader) throw new Error('JWT token is missing');
-
-  const [, token] = authHeader.split(' ');
 
   try {
+    const authHeader = request.headers.authorization;
+
+    if (!authHeader) throw new Error('JWT token is missing');
+
+    const [, token] = authHeader.split(' ');
     const decoded = verify(token, authConfig.jwt.secret);
     const { sub } = decoded as TokenPayload;
     request.user = {

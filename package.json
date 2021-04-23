@@ -8,7 +8,7 @@
   "scripts": {
     "mongodb:create": "docker run --name softdesign__mongodb -p 27017:27017 -d -t mongo",
     "mongodb:start": "docker start softdesign__mongodb",
-    "start:dev": "ts-node-dev --inspect --transpile-only src/server.ts",
+    "server:dev": "ts-node-dev --inspect --transpile-only src/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",

@@ -7,6 +7,9 @@ import { ListBooksService } from '../services/ListBooksServiceService';
 import { FindBooksByTitleService } from '../services/FindBookByTitleService';
 import { FindBooksByIdService } from '../services/FindBookByIDService';
 import { Book } from '../../typeorm/schemas/Book';
+import { UpdateBookService } from '../services/UpdateBookService';
+import { LoanRepository } from '../../typeorm/repositories/LoansRepository';
+import { DeleteBookService } from '../services/DeleteBookService';
 
 export const bookRouter = Router();
 
@@ -70,4 +73,50 @@ bookRouter.get(
     } catch (error) {
       return response.status(400).json({ error: error.message });
     }
-  })
+  });
+
+bookRouter.put(
+  '/:id',
+  async (request: Request, response: Response): Promise<Response> => {
+    const { id } = request.params;
+    const { title, creator, publisher, date } = request.body;
+
+    try {
+      const updateBook = new UpdateBookService(
+        new BookRepository(),
+        new LoanRepository(),
+      );
+
+      const book = await updateBook.execute({
+        id,
+        title,
+        creator,
+        publisher,
+        date,
+      });
+
+      return response.json(book);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
+  }
+);
+
+bookRouter.delete(
+  '/:id',
+  async (request: Request, response: Response): Promise<Response> => {
+    const { id } = request.params;
+
+    try {
+      const deleteBook = new DeleteBookService(
+        new BookRepository(),
+        new LoanRepository(),
+      );
+
+      const resp = await deleteBook.execute(id);
+      return response.json(resp);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
+  }
+);
