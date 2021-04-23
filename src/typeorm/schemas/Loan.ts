@@ -1,9 +1,15 @@
 import { ObjectID, Entity, Column, CreateDateColumn, UpdateDateColumn, ObjectIdColumn } from 'typeorm'
 
-@Entity('books')
-export class Book {
+@Entity('loans')
+export class Loan {
   @ObjectIdColumn()
   id: ObjectID;
+
+  @Column()
+  userId: string;
+
+  @Column()
+  bookId: string;
 
   @Column({default: true})
   active: boolean;

@@ -33,9 +33,9 @@ usersRouter.post('/sessions', async (request: Request, response: Response) => {
       new UserRepository(),
       hashProvider,
     );
-    const { ok } = await authenticateUser.execute({ email, password });
+    const { user, token } = await authenticateUser.execute({ email, password });
 
-    return response.json({ ok });
+    return response.json({ user, token });
   } catch (error) {
     return response.status(400).json({ error: error.message });
   }

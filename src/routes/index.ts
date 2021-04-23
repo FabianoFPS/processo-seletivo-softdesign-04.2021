@@ -6,6 +6,6 @@ import { usersRouter } from '../users/routes/user.routes';
 const routes = Router();
 routes.use('/books', bookRouter);
 routes.use('/users', usersRouter);
-routes.use('/loan', loanRouter);
+routes.use('/loans', loanRouter);
 
 export default routes;

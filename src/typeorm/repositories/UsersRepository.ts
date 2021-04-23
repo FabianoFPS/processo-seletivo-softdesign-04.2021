@@ -22,12 +22,12 @@ export class UserRepository implements IUsersRepository {
     email,
     password,
   }: ICreateUserDTO): Promise<User> {
-    const book = this.ormRepository.create({
+    const user = this.ormRepository.create({
       name,
       email,
       password,
     });
 
-    return this.ormRepository.save(book);
+    return this.ormRepository.save(user);
   }
 }
