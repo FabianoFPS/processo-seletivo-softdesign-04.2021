@@ -14,7 +14,6 @@ export function ensureAuthenticated(
   response: Response,
   next: NextFunction
 ): void | Response {
-
   try {
     const authHeader = request.headers.authorization;
 
@@ -24,11 +23,10 @@ export function ensureAuthenticated(
     const decoded = verify(token, authConfig.jwt.secret);
     const { sub } = decoded as TokenPayload;
     request.user = {
-      id: sub
-    }
+      id: sub,
+    };
     return next();
   } catch (error) {
     return response.json({ error: 'Invalid JWT token' });
   }
-
 }

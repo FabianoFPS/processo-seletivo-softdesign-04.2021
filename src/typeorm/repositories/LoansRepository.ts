@@ -14,13 +14,13 @@ export class LoanRepository implements ILoansRepository {
     userId,
     bookId,
   }: ILoanDTO): Promise<Loan> {
-    const user = this.ormRepository.create({
+    const loan = this.ormRepository.create({
       userId,
       bookId,
       active: true,
     });
 
-    return this.ormRepository.save(user);
+    return this.ormRepository.save(loan);
   }
 
   public async findByBook(bookId: string): Promise<Loan | void> {
